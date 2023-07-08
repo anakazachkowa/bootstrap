@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public Set<Role> listByRole(List<String> name) {
+    public Set<Role> listByName(List<String> name) {
         return roleDao.listByName(name);
     }
 

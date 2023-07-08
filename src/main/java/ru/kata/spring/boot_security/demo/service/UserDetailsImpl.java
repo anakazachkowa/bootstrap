@@ -13,6 +13,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class UserDetailsImpl implements UserDetailsService {
 

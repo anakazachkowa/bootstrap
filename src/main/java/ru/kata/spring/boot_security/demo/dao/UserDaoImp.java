@@ -10,13 +10,14 @@ import java.util.List;
 
 
 @Repository
-public class UserDaoImp implements UserDao{
+public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
-@Override
-    public User getUserByName(String email) {
-        return entityManager.createQuery("select u from User u join fetch u.roles where u.email = :email", User.class)
-                .setParameter("email", email)
+
+    @Override
+    public User getUserByName(String username) {
+        return entityManager.createQuery("select u from User u join fetch u.roles where u.username = :username", User.class)
+                .setParameter("username", username)
                 .getResultList().stream().findAny().orElse(null);
     }
 

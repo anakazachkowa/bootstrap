@@ -29,7 +29,7 @@ public class RoleDaoImpl implements  RoleDao {
 
     @Override
     public Set<Role> listRoles() {
-        List<Role> query = entityManager.createQuery("select  s from Role s",Role.class).getResultList();
+        List<Role> query = entityManager.createQuery("FROM User",Role.class).getResultList();
         return  new HashSet<>(query);
     }
     @Override

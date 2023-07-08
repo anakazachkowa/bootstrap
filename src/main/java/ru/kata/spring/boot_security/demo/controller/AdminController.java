@@ -28,20 +28,20 @@ public class AdminController {
         this.roleService = roleService;
     }
     @GetMapping(value = "/all")
-    public  String allUsers(ModelMap model) {
+    public  String getFormAllUsers(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
         return "allUsersPage";
     }
 
     @GetMapping(value = "/add")
-    public String addUser(Model model) {
+    public String getUserFormForAdd(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "addUser";
     }
 
     @PostMapping(value = "/add")
-    public String postAddUser(@ModelAttribute("user") User user,
+    public String addUser(@ModelAttribute("user") User user,
                               @RequestParam(required=false) String roleAdmin,
                               @RequestParam(required=false) String roleVIP) {
         Set<Role> roles = new HashSet<>();
@@ -58,7 +58,7 @@ public class AdminController {
         return "redirect:/admin";
     }
     @GetMapping(value = "/edit/{id}")
-    public String editUser(ModelMap model, @PathVariable("id") Long id) {
+    public String getUserFormForUpdate(ModelMap model, @PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         Set<Role> roles = user.getRoles();
         for (Role role: roles) {
@@ -73,7 +73,7 @@ public class AdminController {
         return "editUser";
     }
     @PostMapping(value = "/edit")
-    public String postEditUser(@ModelAttribute("user") User user,
+    public String editUser(@ModelAttribute("user") User user,
                                @RequestParam(required=false) String roleAdmin,
                                @RequestParam(required=false) String roleVIP) {
 

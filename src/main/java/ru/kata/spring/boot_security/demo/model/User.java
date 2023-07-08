@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
-    @Column(name ="password")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "last_name")
@@ -50,35 +50,33 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(Long id, String username, String password, String lastName, String email, Set<Role> roles) {
-       this.id = id;
-        this.username = username;
-        this.password = password;
-        this.lastName = lastName;
-        this.email = email;
-        this.roles = roles;
+    public Long getId() {
+        return id;
     }
-    public  Long getId() {
-        return  id;
-    }
-    public void  setId(Long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
-    public  void setUsername (String username) {
+
+    public void setUsername(String username) {
         this.username = username;
     }
-     @Override
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-     }
-     @Override
-    public  String getPassword() {
+    }
+
+    @Override
+    public String getPassword() {
         return password;
-     }
-      @Override
-    public  String getUsername() {
-        return email;
-      }
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -98,27 +96,32 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
     public String getEmail() {
         return email;
     }
-    public  void  setEmail(String email) {
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
     public String getLastName() {
         return lastName;
     }
-    public void setLastName (String lastName) {
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public  void  setPassword (String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
-    public  Set<Role> getRoles() {
+
+    public Set<Role> getRoles() {
         return roles;
     }
-    public  void  setRoles(Set<Role> roles) {
+
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
