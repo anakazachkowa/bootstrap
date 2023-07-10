@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/lk")
-    public String getUserPage2(ModelMap modelMap, Principal principal) {
+    public String getUserPage(ModelMap modelMap, Principal principal) {
         modelMap.addAttribute("user", userService.getUserByName(principal.getName()));
         return "userPage";
     }

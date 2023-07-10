@@ -28,7 +28,7 @@ public class RoleDaoImpl implements  RoleDao {
     }
 
     @Override
-    public Set<Role> listRoles() {
+    public Set<Role> getAllRoles() {
         List<Role> query = entityManager.createQuery("FROM User",Role.class).getResultList();
         return  new HashSet<>(query);
     }
@@ -40,7 +40,7 @@ public class RoleDaoImpl implements  RoleDao {
     }
 
     @Override
-    public Set<Role> listByName(List<String> name) {
+    public Set<Role> getByName(List<String> name) {
         List<Role> query = entityManager.createQuery("select u from Role u where u.role in (:id)", Role.class)
                 .setParameter("id", name)
                 .getResultList();

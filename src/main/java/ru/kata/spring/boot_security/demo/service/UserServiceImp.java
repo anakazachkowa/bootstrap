@@ -16,24 +16,23 @@ import java.util.List;
 
 public class UserServiceImp implements UserService {
     private final UserDao userDao;
-    private  final RoleDao roleDao;
+    private final RoleDao roleDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public PasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder(8);
-    }
 
     @Autowired
-    public UserServiceImp(RoleDao roleDao, UserDao userDao) {
+    public UserServiceImp(RoleDao roleDao, UserDao userDao, PasswordEncoder passwordEncoder ) {
         this.roleDao = roleDao;
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional
     public void addUser(User user) {
         User userPrimary = userDao.getUserByName(user.getUsername());
-        if(userPrimary != null) {
-            user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
+        if (userPrimary != null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         userDao.addUser(user);
 
@@ -52,8 +51,8 @@ public class UserServiceImp implements UserService {
         User userPrimary = getUserById(user.getId());
         System.out.println(userPrimary);
         System.out.println(user);
-        if(!userPrimary.getPassword().equals(user.getPassword())) {
-            user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
+        if (!userPrimary.getPassword().equals(user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         userDao.editUser(user);
     }

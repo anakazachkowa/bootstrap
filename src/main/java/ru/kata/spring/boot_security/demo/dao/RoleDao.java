@@ -10,10 +10,10 @@ public interface RoleDao {
 
     Role getRoleById(Long id);
 
-    Set<Role> listRoles();
+    Set<Role> getAllRoles();
 
     Role getRoleByName(String name);
 
-    Set<Role> listByName(List<String> roles);
+    Set<Role> getByName(List<String> roles);
 
 }

@@ -10,9 +10,9 @@ public interface RoleService {
 
     Role getRoleById(Long id);
 
-    Set<Role> listRoles();
+    Set<Role> getAllRoles();
 
-    Set<Role> listByName(List<String> name);
+    Set<Role> getByName(List<String> name);
 
     Role getRoleByName(String name);
 }

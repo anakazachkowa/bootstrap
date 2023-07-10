@@ -12,11 +12,6 @@ import java.util.List;
 public class RootController {
     @RequestMapping(value = "/")
     public String getHomePage(Model model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC-SECURITY application");
-        messages.add("This is Root Page");
-        model.addAttribute("messages", messages);
         return "helloPage";
     }
 
@@ -25,12 +20,5 @@ public class RootController {
         return "loginPage";
     }
 
-    @GetMapping(value = "vip")
-    public String getVipPage(Model model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("This is VIP Page");
-        model.addAttribute("messages", messages);
-        return "vipPage";
-    }
+
 }
