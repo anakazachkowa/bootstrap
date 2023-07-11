@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -27,61 +27,49 @@ public class AdminController {
         this.userService = userService;
         this.roleService = roleService;
     }
-    @GetMapping(value = "/admin")
-    public  String getFormAllUsers(ModelMap model) {
+
+    @GetMapping(value = "/all")
+    public String getFormAllUsers(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
+
         return "allUsersPage";
     }
 
     @GetMapping(value = "/add")
-    public String getUserFormForAdd(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+    public String getUserFormForAdd(@ModelAttribute("user") User user) {
+
         return "addUser";
     }
 
     @PostMapping(value = "/add")
     public String addUser(@ModelAttribute("user") User user,
-                              @RequestParam(required=false) String roleAdmin) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("ROLE_USER"));
-        if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
-            roles.add(roleService.getRoleByName("ROLE_ADMIN"));
-        }
-        user.setRoles(roles);
-        userService.addUser(user);
+                          @ModelAttribute("roleAdmin") String roleAdmin) {
+        userService.addUser(user, roleAdmin);
 
         return "redirect:/admin";
     }
+
     @GetMapping(value = "/edit/{id}")
     public String getUserFormForUpdate(ModelMap model, @PathVariable("id") Long id) {
         User user = userService.getUserById(id);
-        Set<Role> roles = user.getRoles();
-        for (Role role: roles) {
-            if (role.equals(roleService.getRoleByName("ROLE_ADMIN"))) {
-                model.addAttribute("roleAdmin", true);
-            }
-        }
+        model.addAttribute("roleAdmin", true);
         model.addAttribute("user", user);
+
         return "editUser";
     }
+
     @PostMapping(value = "/edit")
     public String editUser(@ModelAttribute("user") User user,
-                               @RequestParam(required=false) String roleAdmin) {
+                           @ModelAttribute("roleAdmin") String roleAdmin) {
+        userService.editUser(user, roleAdmin);
 
-    Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("ROLE_USER"));
-        if (roleAdmin != null && roleAdmin .equals("ROLE_ADMIN")) {
-           roles.add(roleService.getRoleByName("ROLE_ADMIN"));
-       }
-        user.setRoles(roles);
-        userService.editUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteUserById(@PathVariable("id") Long id) {
         userService.deleteUser(id);
+
         return "redirect:/admin";
     }
 
