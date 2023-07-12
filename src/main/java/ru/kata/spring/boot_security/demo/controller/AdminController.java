@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping
 public class AdminController {
 
     private final UserService userService;
@@ -28,7 +28,8 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping(value = "/all")
+
+    @GetMapping(value = "/admin")
     public String getFormAllUsers(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
 

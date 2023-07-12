@@ -5,7 +5,7 @@
     <form th:if="${#request.userPrincipal != null}" th:action="@{/logout}">
         <button type="submit">Выйти</button>
     </form>
-    <form th:action="@{/admin/all}">
+    <form th:action="@{/admin}">
         <button type="submit">Админ</button>
     </form>
     <form th:action="@{/user/lk}">

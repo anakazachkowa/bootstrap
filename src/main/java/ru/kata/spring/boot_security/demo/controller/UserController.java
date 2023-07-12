@@ -26,9 +26,5 @@ public class UserController {
         return "userPage";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, ModelMap modelMap) {
-        modelMap.addAttribute("user", userService.getUserById(id));
-        return "userPage";
-    }
+
 }
