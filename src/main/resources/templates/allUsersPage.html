@@ -93,7 +93,7 @@
                                     aria-label="Close"></button>
                           </div>
                           <form th:action="@{edit/{id}(id=${user.getId()})}"
-                                th:object="${user}" th:method="GET">
+                                th:object="${user}" th:method="PUT">
                             <div class="modal-body col-md text-center">
                               <br>
                               <label for="username0"><b>Username</b></label>
@@ -102,8 +102,8 @@
                                      th:value="${user.getUsername()}"/>
                               <br>
                               <label for="lastname0"><b>Lastname</b></label>
-                              <input th:name="lastname" th:type="text"
-                                     class="form-control" id="lastname0"
+                              <input th:name="lastName" th:type="text"
+                                     class="form-control" id="lastName0"
                                      th:value="${user.getLastName()}"/>
                               <br>
                               <label for="email0"><b>Email</b></label>

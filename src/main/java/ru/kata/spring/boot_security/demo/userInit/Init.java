@@ -43,8 +43,8 @@ public class Init {
         User user1 = new User("admin", "admin",  "Verkina", "vera@mail.ru", roleAdmin);
         User user2 = new User("user", "user","Varova", "vara@yandex.ru", roleUser);
 
-        userService.addUser(user1,"ROLE_ADMIN");
-        userService.addUser(user2,"ROLE_USER");
+        userService.addUser(user1);
+        userService.addUser(user2);
         
     }
 }

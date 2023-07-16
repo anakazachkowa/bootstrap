@@ -43,9 +43,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/add")
-    public String addUser(@ModelAttribute("user") User user,
-                          @ModelAttribute("roleAdmin") String roleAdmin) {
-        userService.addUser(user, roleAdmin);
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
 
         return "redirect:/admin";
     }
@@ -59,11 +58,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping(value = "/edit")
-    public String editUser(@ModelAttribute("user") User user,
-                           @ModelAttribute("roleAdmin") String roleAdmin) {
-        userService.editUser(user, roleAdmin);
-
+    @PutMapping(value = "/edit/{id}")
+    public String editUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+        user.setId(id);
+        userService.editUser(user);
         return "redirect:/admin";
     }
 

@@ -33,14 +33,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void addUser(User user, String roleAdmin) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("ROLE_USER"));
-        if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
-            roles.add(roleService.getRoleByName("ROLE_ADMIN"));
-
+    public void addUser(User user) {
+        for (Role role :user.getRoles()){
+            role.setId(roleService.getRoleByName(role.getRole()).getId());
         }
-        user.setRoles(roles);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addUser(user);
@@ -55,15 +51,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void editUser(User user, String roleAdmin) {
-
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("ROLE_USER"));
-        if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
-            roles.add(roleService.getRoleByName("ROLE_ADMIN"));
-
+    public void editUser(User user) {
+        for (Role role :user.getRoles()){
+            role.setId(roleService.getRoleByName(role.getRole()).getId());
         }
-        user.setRoles(roles);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.editUser(user);
