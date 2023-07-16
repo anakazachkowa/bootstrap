@@ -37,6 +37,7 @@ public class Init {
         Set<Role> roleUser = new HashSet<>();
 
         roleAdmin.add(role1);
+//        roleAdmin.add(role2);
         roleUser.add(role2);
 
         User user1 = new User("admin", "admin",  "Verkina", "vera@mail.ru", roleAdmin);

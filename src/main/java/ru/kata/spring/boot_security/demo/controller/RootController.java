@@ -12,11 +12,6 @@ import java.util.List;
 public class RootController {
     @RequestMapping(value = "/")
     public String getHomePage(Model model) {
-        return "helloPage";
-    }
-
-    @GetMapping(value = "login")
-    public String getLoginPage() {
         return "loginPage";
     }
 

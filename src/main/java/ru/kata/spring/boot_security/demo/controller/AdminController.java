@@ -56,7 +56,7 @@ public class AdminController {
         model.addAttribute("roleAdmin", true);
         model.addAttribute("user", user);
 
-        return "editUser";
+        return "redirect:/admin";
     }
 
     @PostMapping(value = "/edit")
