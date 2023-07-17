@@ -119,7 +119,7 @@
                               <label for="roles"><b>Role</b></label>
                               <select multiple class="form-control form-control-sm" id="roles" name="roles" size="2" required>
                                 <option  th:value="ROLE_ADMIN" th:selected="${'ROLE_ADMIN'}">
-                                <option th:text="ROLE_ADMIN" >
+                                  <th:block th:text="ROLE_ADMIN" >
                                 <option th:value="ROLE_USER" th:selected="${'ROLE_USER'}">
                                   <th:block th:text="ROLE_USER">
                                   </th:block>
@@ -175,7 +175,7 @@
                               <label for="roles"><b>Role</b></label>
                               <select multiple class="form-control form-control-sm" id="role" name="roles" size="2" required>
                                 <option  th:value="ROLE_ADMIN" th:selected="${'ROLE_ADMIN'}">
-                                <option th:text="ROLE_ADMIN" >
+                                  <th:block th:text="ROLE_ADMIN" >
                                 <option th:value="ROLE_USER" th:selected="${'ROLE_USER'}">
                                   <th:block th:text="ROLE_USER">
                                   </th:block>

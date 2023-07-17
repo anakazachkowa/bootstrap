@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <!--    <p class="navbar-brand text-white">-->
     <!--      <b><span class="align-middle" th:text="${user.username}"></span></b>-->
@@ -20,18 +20,19 @@
     </form>
   </div>
 </nav>
-<div class="container-fluid h-100">
-  <div class="row h-100">
 
-    <div class="p-0 col-2">
-      <div class="nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ROLE_ADMIN')" role="tab"
-           aria-controls="v-pills-home" aria-selected="true">Admin</a>
-        <a class="nav-link active" href="/user" sec:authorize="(hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER'))" role="tab"
-           aria-controls="v-pills-profile" aria-selected="false">User</a>
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="p-0 col-2">
+        <div class="nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" href="/admin" sec:authorize="hasAuthority('ROLE_ADMIN')" role="tab"
+             aria-controls="v-pills-home" aria-selected="true">Admin</a>
+          <a class="nav-link" href="/user/lk" sec:authorize="(hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER'))"
+             role="tab"
+             aria-controls="v-pills-profile" aria-selected="false">User</a>
+        </div>
       </div>
-    </div>
-
     <div class="p-0 col-10 bg-light">
       <div class="tabs p-4">
         <h1>User information-page</h1>
